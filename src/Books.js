@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import BooksAPI from './APIs/BooksAPI';
 
@@ -53,7 +53,7 @@ const Books = () => {
 									<button>Add To List</button>
 								</Link>
 								<a href={book.volumeInfo.infoLink}
-									target="_blank">
+									target="_blank" rel="noreferrer">
 									<button>More Info</button>
 								</a>
 							</div>
