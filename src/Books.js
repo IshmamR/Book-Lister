@@ -4,17 +4,17 @@ import BooksAPI from './APIs/BooksAPI';
 
 const Books = () => {
 	const [term, setTerm] = useState("");
+	
 	// const [data, setData] = useState([]);
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		var query = document.forms["book_search"]["search"].value;
 		console.log(term);
 		setTerm(query);
 	}
-	console.log(term);
+	// console.log(term);
 	const {data} = BooksAPI(term);
-	console.log(data);
+	// console.log(data);
 
 	return(
 		<div className="Books">
@@ -33,7 +33,7 @@ const Books = () => {
 					return (
 						<div className="book_card" key={book.id}>
 							<div className="img_title">
-								<img src={book.volumeInfo.imageLinks.thumbnail}
+								<img src={book.volumeInfo.imageLinks?.thumbnail}
 								 alt="..." />
 								 <div className="title_d">
 								 	<h1>{book.volumeInfo.title}</h1>
@@ -48,10 +48,15 @@ const Books = () => {
 								 </div>
 							</div>
 
-							 <div className="btns">
-							 	<Link to="/"><button>Add To List</button></Link>
-							 	<Link to="/"><button>Buy The Book</button></Link>
-							 </div>
+							<div className="btns">
+								<Link to={"/add_book/"+book.id}>
+									<button>Add To List</button>
+								</Link>
+								<a href={book.volumeInfo.infoLink}
+									target="_blank">
+									<button>More Info</button>
+								</a>
+							</div>
 						</div>
 					);
 				})
