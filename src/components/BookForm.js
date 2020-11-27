@@ -17,7 +17,7 @@ const BookForm = ({id}) => {
 		if (str !== undefined && str !== "undefined") {
 			setAuthor(str);
 		}
-		console.log(author);
+		// console.log(author);
 		// console.log(data);
 	}, [data]);
 
@@ -33,6 +33,7 @@ const BookForm = ({id}) => {
 		setTitle('');
 		setAuthor('');
 	}
+	document.querySelector('.book_submit')?.scrollIntoView();
 
 	return (
 		<form className="form" onSubmit={ handleSubmit }>
@@ -40,7 +41,7 @@ const BookForm = ({id}) => {
 				onChange={(e) => setTitle(e.target.value)} />
 			<input className="book_form" type="text" placeholder="Author" value={author} required
 				onChange={(e) => setAuthor(e.target.value)} />
-			<input className="book_submit end" type="submit" value="add book" />
+			<input className="book_submit" type="submit" value="add book" />
 		</form>
 	);
 }

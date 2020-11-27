@@ -10,11 +10,13 @@ class Home extends Component {
 		// console.log(typeof id);
 		return (
 			<div className="Home">
+				<div className="Home-main">
 				<BookContextProvider>
 					<NavBar />
 					<BookList />
 					<BookForm id={id} />
 				</BookContextProvider>
+				</div>
 			</div>
 		);
 	}

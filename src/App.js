@@ -17,6 +17,7 @@ function App() {
 					<Route exact path="/add_book" component={Home} />
 					<Route path="*" component={Page404} />
 				</Switch>
+				<div className="footer">By Ishmam</div>
 			</BrowserRouter>
 		</div>
 	);

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import BooksAPI from './APIs/BooksAPI';
+import Google from './imgs/poweredby.png';
 
 const Books = () => {
 	const [term, setTerm] = useState("");
@@ -9,22 +10,41 @@ const Books = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		var query = document.forms["book_search"]["search"].value;
-		console.log(term);
-		setTerm(query);
+		// console.log(term);
+		if(query.trim() !== "") {
+			setTerm(query);
+		}
 	}
 	// console.log(term);
 	const {data} = BooksAPI(term);
 	// console.log(data);
+	const handleSlider = () => {
+		let slide = document.querySelector('.sidebar');
+		let slideBtn = document.querySelector('.slide-btn');
+		if(slide.classList.contains('active')) {
+			slide.classList.remove('active');
+			slideBtn.innerHTML = '&gt;';
+		} else {
+			slide.classList.add('active');
+			slideBtn.innerHTML = 'X';
+		}
+	}
 
 	return(
 		<div className="Books">
 			<div className="sidebar">
+				<div className="slider">
+					<button className="slide-btn" onClick={handleSlider}>&gt;</button>
+				</div>
 				<Link to="/cat"><div>Category</div></Link>
 				<Link to="/tag"><div>Tag</div></Link>
 				<Link to="/pri"><div>Price</div></Link>
 				<form name="book_search" onSubmit={handleSubmit}>
 					<input className="book_form" type="text" name="search" placeholder="Search" />
 				</form>
+				<div className="poweredby">
+					<img src={Google} alt="powered by Google" />
+				</div>
 			</div>
 
 			<div className="main">
